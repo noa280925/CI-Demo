@@ -11,6 +11,7 @@ pipeline{
         stages{
             stage('Hello'){
                 steps {
+                sleep time: 15, unit: 'SECONDS'
                 echo "build number: ${env.BUILD_NUMBER}"
                 echo 'Hello World'
                 echo "${APP_ENV}"
@@ -33,5 +34,6 @@ pipeline{
 
 }
    
+
 
 
