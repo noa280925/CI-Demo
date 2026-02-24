@@ -1,50 +1,51 @@
-pipeline{
-
+pipeline {
     agent any
+
     environment {
         APP_ENV = "staging"
-
     }
-    options{
+
+    options {
         timeout(time: 2, unit: 'SECONDS')
     }
-        stages{
-            stage('connect to github'){
-        steps{
-            withCredentials([
-    		  usernamePassword(credentialsId: 'GitHubUser', usernameVariable: 'USER', passwordVariable: 'PASS'),
-    		]) {
-    		  bat '''
-    			echo  Deploying as %USER% %PASS%
-    		  '''
-    		}
+
+    stages {
+        stage('connect to github') {
+            steps {
+                withCredentials([
+                    usernamePassword(credentialsId: 'GitHubUser', usernameVariable: 'USER', passwordVariable: 'PASS')
+                ]) {
+                    bat '''
+                        echo Deploying as %USER% %PASS%
+                    '''
+                }
+            }
         }
-        }
-            stage('Hello'){
-                steps {
+
+        stage('Hello') {
+            steps {
                 sleep time: 15, unit: 'SECONDS'
                 echo "build number: ${env.BUILD_NUMBER}"
                 echo 'Hello World'
                 echo "${APP_ENV}"
             }
-                
-            stage("stage number one"){
-                steps{
-                    echo "Avital & Rachely"
-                }
+        }
 
+        stage("stage number one") {
+            steps {
+                echo "Avital & Rachely"
             }
-            stage('build'){
-                steps {
+        }
+
+        stage('build') {
+            steps {
                 echo 'The second stage'
                 echo "The second step"
             }
-
         }
-
-
+    }  // סוגר את הסטייג'ים כאן
 }
-   
+
 
 
 
