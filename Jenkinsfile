@@ -1,1 +1,16 @@
+pipeline{
+
+    agent any
+        stages{
+            stage("stage number one"){
+                steps{
+                    echo "Avital & Rachely"
+                }
+
+            }
+
+        }
+
+
+}
 
