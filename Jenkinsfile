@@ -5,6 +5,9 @@ pipeline{
         APP_ENV = "staging"
 
     }
+    options{
+        timeout(time: 20, unit: 'MINUTES')
+    }
         stages{
             stage('Hello'){
                 steps {
@@ -30,3 +33,4 @@ pipeline{
 
 }
    
+
